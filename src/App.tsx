@@ -1,5 +1,5 @@
 // App.tsx
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Product } from "./components/Product";
 import type { Product as ProductType } from "./components/Types";
