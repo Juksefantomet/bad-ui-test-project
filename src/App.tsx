@@ -79,6 +79,7 @@ function CartViewer() {
           localStorage.removeItem(CART_KEY);
           setItems([]);
         }}
+        className="underline hover:no-underline cursor-pointer"
       >
         Clear cart
       </button>
@@ -108,7 +109,7 @@ function App() {
 
   return (
     <>
-      <div className="p-8">
+      <div className="p-8 mb-18">
         <div>
           {products.map((product) => (
             <Product key={product.name} productItem={product} />
