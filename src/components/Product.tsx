@@ -31,7 +31,7 @@ export function Product({ productItem }: ProductProps) {
     setShoeType(types[Math.floor(Math.random() * types.length)]);
     setShoePrice(prices[Math.floor(Math.random() * prices.length)]);
 
-    timerRef.current = setTimeout(pickRandom, Math.random() * 1000);
+    timerRef.current = setTimeout(pickRandom, Math.random() * 5000);
   }
 
   pickRandom();
@@ -47,6 +47,7 @@ export function Product({ productItem }: ProductProps) {
 
 
   function addToCart() {
+
     try {
       const existing = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
       const entry = {
@@ -61,6 +62,7 @@ export function Product({ productItem }: ProductProps) {
       };
       existing.push(entry);
       localStorage.setItem(CART_KEY, JSON.stringify(existing));
+      
       // optional: trigger a storage event for other windows/components
       window.dispatchEvent(new Event("storage"));
     } catch (e) {
