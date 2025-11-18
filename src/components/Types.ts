@@ -11,4 +11,5 @@ export interface Product {
   prices: number[];
   available: boolean | number;
   meta?: Record<string, unknown>;
+  availableColors: string[];
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import { Product } from "./components/Product";
 import type { Product as ProductType } from "./components/Types";
+import { Footer } from "./components/footer";
 
 const CART_KEY = "cart";
 
@@ -14,6 +15,19 @@ function CartViewer() {
       return [];
     }
   });
+
+  const animalBySize =[
+   'mouse',      
+   'hamster',
+   'rat',
+   'rabbit',
+   'cat',
+   'dog',
+   'goat',
+   'horse',
+   'elephant',   
+   'unknown/variable'
+  ];
 
   useEffect(() => {
     const onStorage = () => {
@@ -38,7 +52,7 @@ function CartViewer() {
       <ul>
         {items.map((it, i) => (
           <li key={i}>
-            {it.name} — size {it.selected.size} — {it.selected.shoeType} —{" "}
+            {it.name} — size {animalBySize[it.selected.size]} — {it.selected.shoeType} —{" "}
             {it.selected.shoePrice} ({new Date(it.addedAt).toLocaleString()})
           </li>
         ))}
@@ -60,10 +74,11 @@ function App() {
     {
       name: "storsko",
       description: "A big shoe",
-      availableSizes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+      availableSizes: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       availableTypes: ["left", "right", "pair", "two pairs", "three pairs", "ten pairs"],
       prices: [75, 75, 150, 300, 450, 4500],
       available: 1,
+      availableColors: ['red', 'blue', 'pink', 'yellow'],
     },
   ];
 
@@ -77,6 +92,7 @@ function App() {
           ))}
         </div>
       </div>
+      <Footer price={1234} />
     </>
   );
 }

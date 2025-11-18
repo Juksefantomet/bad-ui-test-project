@@ -1,5 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Product } from "./Types";
+import redShoe from "../assets/shoe-red.png";
+import blueShoe from "../assets/shoe-blue.png";
+import pinkShoe from "../assets/shoe-yellow.png";
+import yellowShoe from "../assets/shoe-pink.png";
 
 export type ProductProps = {
   productItem: Product;
@@ -17,6 +21,9 @@ export function Product({ productItem }: ProductProps) {
   const [shoePrice, setShoePrice] = useState<number>(
     productItem.prices?.[0] ?? 0
   );
+  const [color, setColor] = useState<string>(
+    productItem.availableColors?.[0] ?? "red"
+  );
 
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -26,10 +33,13 @@ export function Product({ productItem }: ProductProps) {
     const sizes = productItem.availableSizes || [size];
     const types = productItem.availableTypes || [shoeType];
     const prices = productItem.prices || [shoePrice];
+    const colors = productItem.availableColors || [color];
+
 
     setSize(sizes[Math.floor(Math.random() * sizes.length)]);
     setShoeType(types[Math.floor(Math.random() * types.length)]);
     setShoePrice(prices[Math.floor(Math.random() * prices.length)]);
+    setColor(colors[Math.floor(Math.random() * colors.length)]);
 
     timerRef.current = setTimeout(pickRandom, Math.random() * 5000);
   }
@@ -44,6 +54,21 @@ export function Product({ productItem }: ProductProps) {
   };
   // eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
+
+function getShoeImageByColor(color: string): string {
+    switch (color) {
+      case "red":
+        return redShoe;
+      case "blue":
+        return blueShoe;
+      case "pink":
+        return pinkShoe;
+      case "yellow":
+        return yellowShoe;
+      default:
+        return redShoe; // default image
+    }
+  }
 
 
   function addToCart() {
@@ -79,8 +104,7 @@ export function Product({ productItem }: ProductProps) {
    'dog',
    'goat',
    'horse',
-   'elephant',   
-   'unknown/variable'
+   'elephant',
   ];
 
   return (
@@ -88,6 +112,7 @@ export function Product({ productItem }: ProductProps) {
       <h3>{productItem.name}</h3>
       <p>{productItem.description}</p>
       <strong>{shoePrice}</strong>
+      <img src={getShoeImageByColor(color)} alt={`${color} shoe`} style={{ width: 100, height: 100 }} />
 
       <div>
         Selected shoe size: <strong>{animalBySize[size]}</strong>
@@ -97,7 +122,7 @@ export function Product({ productItem }: ProductProps) {
       </div>
 
       <div style={{ marginTop: 8 }}>
-        <button onClick={addToCart}>Add to cart</button>
+        <button className="hover:bg-[#364a32] bg-[#d0f0c9] py-4 px-8" onClick={addToCart}>Add to cart</button>
       </div>
     </div>
   );
