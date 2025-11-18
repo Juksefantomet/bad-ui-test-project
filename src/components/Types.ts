@@ -1,5 +1,5 @@
 // Types.ts
-export type PairType = "left" | "right" | "pair" | "two pairs" | "three pairs" | "family deal";
+export type PairType = "left" | "right" | "pair" | "two pairs" | "three pairs" | "ten pairs";
 
 export interface Product {
   id?: string;
