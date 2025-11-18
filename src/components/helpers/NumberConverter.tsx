@@ -73,7 +73,7 @@ export function numberToNorwegianWords(n: number): string {
   if (n === 0) return "NULL";
 
   if (n < -9999 || n > 9999) {
-    throw new Error("Only numbers between -9999 and 9999 are supported.");
+    return "ILLE MYE PENGER!!";
   }
 
   const isNegative = n < 0;
