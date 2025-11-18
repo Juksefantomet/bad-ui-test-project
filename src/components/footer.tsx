@@ -42,7 +42,7 @@ export function Footer({ price }: FooterProps) {
   }, [items]);
   
   return (
-    <div className="bg-[#364a32] text-[#d0f0c9] flex justify-between items-center p-4 absolute bottom-0 w-full">
+    <div className="bg-[#364a32] text-[#d0f0c9] flex justify-between items-center p-4 fixed bottom-0 w-full">
       <img className="w-12 h-12" src={burger} alt="Burger menu icon" />
       <h1 className="text-2xl">Sko-pa-fot.com</h1>
       <div className="border-[#d0f0c9] border p-1 text-2xl font-[digital]">
