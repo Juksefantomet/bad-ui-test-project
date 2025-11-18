@@ -1,18 +1,46 @@
-import './App.css'
+// App.tsx
+import "./App.css";
 import { BadButton } from "bad-ui-fonanf";
+import { Product } from "./components/Product";
+import type { Product as ProductType } from "./components/Types"; // alias so it doesn't clash with component
 
 function App() {
+  const availableColors = ["red", "yellow", "blue"];
+  const advancedColors = [
+    { color: "green", combo: [2, 3] },
+    { color: "orange", combo: [1, 2] },
+    { color: "purple", combo: [1, 3] },
+  ];
+
+  const products: ProductType[] = [
+    {
+      name: "storsko",
+      availableSizes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+      availableTypes: ["left", "right", "pair", "two pairs", "three pairs", "family deal"],
+      prices: [75, 75, 150, 300, 450, 2000],
+      available: 1,
+    },
+  ];
+
   return (
     <>
       <div>
-        <BadButton level="mild">Mildly annoying button</BadButton>
-      <BadButton level="annoying">Annoying button</BadButton>
-      <BadButton level="unusable" onClick={() => alert("Why did you click this?")}>
-        Completely unusable button
-      </BadButton>
+        {products.map((product) => (
+          <Product key={product.name} productItem={product} />
+        ))}
+
+        {
+          /*
+          <BadButton level="mild">Mildly annoying button</BadButton>
+        <BadButton level="annoying">Annoying button</BadButton>
+        <BadButton level="unusable" onClick={() => alert("Why did you click this?")}>
+          Completely unusable button
+        </BadButton>
+          */
+        }
       </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
