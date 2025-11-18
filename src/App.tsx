@@ -5,6 +5,7 @@ import { Product } from "./components/Product";
 import type { Product as ProductType } from "./components/Types";
 import { Footer } from "./components/footer";
 import { getShoeImageByColor } from "./components/helpers/ProductImage";
+import { numberToNorwegianWords } from "./components/helpers/NumberConverter";
 
 export const CART_KEY = "cart";
 
@@ -64,7 +65,7 @@ function CartViewer() {
             <div className="flex items-center justify-between">
               <strong className="text-2xl">{it.name}</strong>
               <span className="font-[digital] text-xl">
-                {it.selected.shoePrice} KR
+                {numberToNorwegianWords(it.selected.shoePrice)} KR
               </span>
             </div>
             <span>Size: {animalBySize[it.selected.size]}</span>
